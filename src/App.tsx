@@ -1,8 +1,8 @@
 import { Button } from 'antd';
 import React from 'react';
-import logo from './logo.svg';
+import { useLayout } from './hooks/useLayout';
 
-function App() {
+export const App = useLayout(() => {
   return (
     <div className="App">
       <Button type="primary" danger>
@@ -10,6 +10,4 @@ function App() {
       </Button>
     </div>
   );
-}
-
-export default App;
+});
