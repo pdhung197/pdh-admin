@@ -29,7 +29,7 @@ module.exports = {
       },
     ],
     'no-shadow': ['error', { builtinGlobals: false, hoist: 'all', allow: [] }],
-    curly: ['error', 'all'],
+    curly: ['error', 'multi'],
   },
   overrides: [
     {

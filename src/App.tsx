@@ -1,13 +1,12 @@
-import { Button } from 'antd';
 import React from 'react';
-import { useLayout } from './hooks/useLayout';
+import { BrowserRouter } from 'react-router-dom';
+import { Routing } from './Components/Routing/Routing';
+import { TranslationProvider } from './hooks/useTranslation/TranslationProvider';
 
-export const App = useLayout(() => {
-  return (
-    <div className="App">
-      <Button type="primary" danger>
-        Day la button
-      </Button>
-    </div>
-  );
-});
+export const App = () => (
+  <TranslationProvider>
+    <BrowserRouter>
+      <Routing />
+    </BrowserRouter>
+  </TranslationProvider>
+);
