@@ -1,51 +1,41 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { routes } from '../../configs/routes';
+import { adminRoutes, privateRoutes, publicRoutes } from '../../configs/routes';
 import { AuthLayout } from '../../Containers/Layouts/AuthLayout';
+import { PrivateRouteType, RouteTyping } from '../../Models/Route';
 import { FallBack } from '../FallBack/FallBack';
 import { NotFound } from '../NotFound/NotFound';
 
-type AccessLevel = 'public' | 'viewer' | 'admin';
-
-export type RouteTyping = {
-  path: string;
-  accessLevel: AccessLevel;
-  exact?: boolean;
-  redirect?: string;
-  component?: FunctionComponent<any>;
-  child?: RouteTyping[];
-  routeKey?: string;
-  routeLabel?: string;
-};
-
 const createManualRoute = (route: RouteTyping, key: number) => {
-  const { path, accessLevel, exact, redirect, component: RenderingComponent } = route;
+  const { path, exact, redirect, component: RenderingComponent } = route;
 
   const render = () => {
     if (redirect) return <Redirect to={redirect} />;
 
     if (!RenderingComponent) return <FallBack />;
 
-    switch (accessLevel) {
-      case 'public':
-        return <RenderingComponent />;
-      default:
-        return (
-          <AuthLayout {...route}>
-            <RenderingComponent />
-          </AuthLayout>
-        );
-    }
+    return <RenderingComponent />;
   };
 
   return <Route key={key} path={path} exact={exact} render={render} />;
 };
 
+const PrivateRouting = ({ accessLevel }: PrivateRouteType) => {
+  return (
+    <AuthLayout accessLevel={accessLevel}>
+      <Switch>{Object.values([...privateRoutes, ...adminRoutes]).map(createManualRoute)}</Switch>
+    </AuthLayout>
+  );
+};
+
 export const Routing = () => {
   return (
     <Switch>
-      {Object.values(routes).map(createManualRoute)}
-      <Route component={NotFound} />
+      {Object.values(publicRoutes).map(createManualRoute)}
+      <Route path="/admin" render={() => <PrivateRouting accessLevel="viewer" />} />
+      <Route path="/user" render={() => <PrivateRouting accessLevel="admin" />} />
+      <Redirect exact from="/" to={privateRoutes[0].path} />
+      <Route path="*" component={NotFound} />
     </Switch>
   );
 };

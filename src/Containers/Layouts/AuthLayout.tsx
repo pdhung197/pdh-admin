@@ -1,21 +1,32 @@
 import React, { ReactNode } from 'react';
+import { Footer } from '../../Components/Footer/Footer';
 import { LanguageSelector } from '../../Components/LanguageSelector/LanguageSelector';
-import { TopNav } from '../../Components/Nav/TopNav';
+import { TopNav } from '../../Components/TopNav/TopNav';
 import { Trans } from '../../hooks/useTranslation/TranslationProvider';
+import { PrivateRouteType } from '../../Models/Route';
+import { Header } from '../Header/Header';
+import { NavSide } from '../NavSide/NavSide';
+import { SettingSide } from '../SettingSide/SettingSide';
 
-type LayoutProps = {
+interface LayoutProps extends PrivateRouteType {
   children: ReactNode;
-};
+}
 
-export const AuthLayout = ({ children, ...otherProps }: LayoutProps) => {
+export const AuthLayout = ({ children, accessLevel }: LayoutProps) => {
   return (
     <>
-      <TopNav />
+      <Header />
+      <TopNav accessLevel={accessLevel} />
       <LanguageSelector />
-      <p>
-        <Trans t="common.adminView" />
-      </p>
-      {children}
+      <NavSide accessLevel={accessLevel} />
+      <SettingSide />
+      <main>
+        <p>
+          <Trans t="common.adminView" />
+        </p>
+        {children}
+      </main>
+      <Footer />
     </>
   );
 };

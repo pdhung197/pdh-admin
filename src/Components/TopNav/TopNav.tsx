@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { routes } from '../../configs/routes';
 import { useTranslation } from '../../hooks/useTranslation/TranslationProvider';
-import { RouteTyping } from '../Routing/Routing';
+import { RouteTyping } from '../../Models/Route';
 
-export const TopNav = () => {
+export const TopNav = React.memo((props: any) => {
   const t = useTranslation();
-
+  console.log('Render');
   return (
     <nav>
       {Object.values(routes).map((route: RouteTyping, index: number) => {
@@ -23,4 +23,4 @@ export const TopNav = () => {
       </div>
     </nav>
   );
-};
+});

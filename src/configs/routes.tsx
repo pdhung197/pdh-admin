@@ -1,27 +1,12 @@
-import { RouteTyping } from '../Components/Routing/Routing';
 import { About } from '../pages/About';
-import { ChangePass } from '../pages/AuthViews/ChangePass';
-import { ResetPass } from '../pages/AuthViews/ResetPass';
-import { SignIn } from '../pages/AuthViews/SignIn';
-import { SignUp } from '../pages/AuthViews/SignUp';
+import { ChangePass } from '../pages/PublicViews/ChangePass';
+import { ResetPass } from '../pages/PublicViews/ResetPass';
+import { SignIn } from '../pages/PublicViews/SignIn';
+import { SignUp } from '../pages/PublicViews/SignUp';
 import { Dashboard } from '../pages/Dashboard';
+import { RouteTyping } from '../Models/Route';
 
-export const routes: RouteTyping[] = [
-  {
-    path: '/',
-    accessLevel: 'viewer',
-    component: Dashboard,
-    exact: true,
-    routeKey: 'common.route.dashboard',
-    routeLabel: 'Dash board',
-  },
-  {
-    path: '/about',
-    accessLevel: 'viewer',
-    component: About,
-    routeKey: 'common.route.about',
-    routeLabel: 'About',
-  },
+export const publicRoutes: RouteTyping[] = [
   {
     path: '/signin',
     accessLevel: 'public',
@@ -44,15 +29,38 @@ export const routes: RouteTyping[] = [
     routeLabel: 'Forget Pass',
   },
   {
-    path: '/admin/changepass',
+    path: '/auth/callback',
+    accessLevel: 'public',
+    redirect: '/dashboard',
+  },
+];
+
+export const privateRoutes: RouteTyping[] = [
+  {
+    path: '/admin/dashboard',
+    accessLevel: 'viewer',
+    component: Dashboard,
+    exact: true,
+    routeKey: 'common.route.dashboard',
+    routeLabel: 'Dash board',
+  },
+  {
+    path: '/admin/about',
+    accessLevel: 'viewer',
+    component: About,
+    routeKey: 'common.route.about',
+    routeLabel: 'About',
+  },
+];
+
+export const adminRoutes: RouteTyping[] = [
+  {
+    path: '/user/changepass',
     accessLevel: 'admin',
     component: ChangePass,
     routeKey: 'common.route.changePass',
     routeLabel: 'Change pass',
   },
-  {
-    path: '/auth/callback',
-    accessLevel: 'public',
-    redirect: '/',
-  },
 ];
+
+export const routes: RouteTyping[] = [...privateRoutes, ...publicRoutes, ...adminRoutes];
