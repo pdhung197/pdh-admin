@@ -1,28 +1,26 @@
-import React, { useContext, useEffect } from 'react';
-import { TranslationContext } from '../../hooks/useTranslation/translationContext';
-import { defaultLanguage, langOptions } from '../../Localize/Translation/lang';
+import React, { useEffect } from 'react';
+import { langOptions } from '../../Localize/Translation/lang';
+import { useTranslation } from '../../useTranslation';
 
 export const LanguageSelector = () => {
-  const { userLanguage = defaultLanguage, handleChangeUserLanguage } = useContext(
-    TranslationContext
-  );
+  const { getLanguage, setLanguage } = useTranslation();
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
-    handleChangeUserLanguage(e.target.value);
+    setLanguage(e.target.value);
 
   useEffect(() => {
-    let defaultLang = window.localStorage.getItem('pdh-language');
+    let defaultLang = window.localStorage.getItem('dv-language');
     if (!defaultLang) defaultLang = window.navigator.language.substring(0, 2);
 
-    handleChangeUserLanguage(defaultLang);
-  }, [handleChangeUserLanguage]);
+    setLanguage(defaultLang);
+  }, [setLanguage]);
 
   return (
     <select
       name="languageSelector"
       id="languageSelector"
       onChange={handleSelectChange}
-      value={userLanguage}
+      value={getLanguage()}
     >
       {Object.keys(langOptions).map((langOptionKey, index) => (
         <option key={index} value={langOptionKey}>

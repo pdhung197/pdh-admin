@@ -3,14 +3,19 @@ import { FunctionComponent } from 'react';
 type AccessLevel = 'public' | 'viewer' | 'admin';
 
 export type RouteTyping = {
-  path: string;
-  accessLevel: AccessLevel;
+  path?: string;
+  accessLevel?: AccessLevel;
   exact?: boolean;
   redirect?: string;
   component?: FunctionComponent<any>;
-  child?: RouteTyping[];
   routeKey?: string;
   routeLabel?: string;
+  child?: RouteTyping[];
+};
+
+export type RouteGroup = {
+  title: string;
+  routes: RouteTyping[];
 };
 
 export interface PrivateRouteType {

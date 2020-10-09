@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { FormatType } from '../useTranslation/models/Translation';
+import { FormatType } from '../models/Translation';
 
 const regexGetTextsBetweenDoubleBracket = /\{(.*?\}*)\}/g;
 const regexGetFirstTextBetweenBracket = /\{(.*?\}*)\}/;
