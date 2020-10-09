@@ -46,7 +46,6 @@ export const Routing = () => {
       <Route path="*/admin" render={() => <PrivateRouting accessLevel="viewer" />} />
       <Route path="*/user" render={() => <PrivateRouting accessLevel="admin" />} />
       <Redirect exact from="*/" to={privateRoutes[0].path || '/'} />
-      <Route path="*" component={NotFound} />
     </Switch>
   );
 };
