@@ -32,8 +32,8 @@ const PrivateRouting = ({ accessLevel }: PrivateRouteType) => {
     <AuthLayout accessLevel={accessLevel}>
       <Switch>
         {Object.values(flattenRoutes).map(createManualRoute)}
-        <Redirect from="/admin*" to="/404" />
-        <Redirect from="/user*" to="/404" />
+        <Redirect from="*/admin*" to="/404" />
+        <Redirect from="*/user*" to="/404" />
       </Switch>
     </AuthLayout>
   );
@@ -43,9 +43,9 @@ export const Routing = () => {
   return (
     <Switch>
       {Object.values(publicRoutes).map(createManualRoute)}
-      <Route path="/admin" render={() => <PrivateRouting accessLevel="viewer" />} />
-      <Route path="/user" render={() => <PrivateRouting accessLevel="admin" />} />
-      <Redirect exact from="/" to={privateRoutes[0].path || '/'} />
+      <Route path="*/admin" render={() => <PrivateRouting accessLevel="viewer" />} />
+      <Route path="*/user" render={() => <PrivateRouting accessLevel="admin" />} />
+      <Redirect exact from="*/" to={privateRoutes[0].path || '/'} />
       <Route path="*" component={NotFound} />
     </Switch>
   );
