@@ -40,12 +40,14 @@ const PrivateRouting = ({ accessLevel }: PrivateRouteType) => {
 };
 
 export const Routing = () => {
+  console.log({ route: process.env.PUBLIC_URL });
   return (
     <Switch>
       {Object.values(publicRoutes).map(createManualRoute)}
       <Route path="/admin" render={() => <PrivateRouting accessLevel="viewer" />} />
       <Route path="/user" render={() => <PrivateRouting accessLevel="admin" />} />
       <Redirect exact from="/" to={privateRoutes[0].path || '/'} />
+      <Route path="*" component={NotFound} />
     </Switch>
   );
 };
