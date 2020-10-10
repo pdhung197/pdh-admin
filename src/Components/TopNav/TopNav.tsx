@@ -7,6 +7,7 @@ import {
   componentGroup,
   pageGroup,
 } from '../../configs/routeGroups';
+import { defaultPath } from '../../helpers/common';
 import { PrivateRouteType, RouteGroup, RouteTyping } from '../../Models/Route';
 import { useTranslation } from '../../useTranslation';
 
@@ -24,7 +25,7 @@ export const TopNav = React.memo(({ accessLevel }: PrivateRouteType) => {
       return (
         <React.Fragment key={index + routeKey}>
           <div>
-            {path ? <Link to={path}>{t(routeKey)}</Link> : <span>{t(routeKey)}</span>}
+            {path ? <Link to={defaultPath + path}>{t(routeKey)}</Link> : <span>{t(routeKey)}</span>}
             {child ? ' >' : ''}
           </div>
           {child && generateNavLinks(child)}
@@ -46,7 +47,7 @@ export const TopNav = React.memo(({ accessLevel }: PrivateRouteType) => {
         );
       })}
       <div>
-        <Link to="/abcxyz">404</Link>
+        <Link to={`${defaultPath}/abcxyz`}>404</Link>
       </div>
     </nav>
   );

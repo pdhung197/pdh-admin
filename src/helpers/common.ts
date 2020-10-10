@@ -1,6 +1,8 @@
 import { format } from 'date-fns';
 import { FormatType } from '../useTranslation/models/Translation';
 
+export const defaultPath = process.env.PUBLIC_URL;
+
 const regexGetTextsBetweenDoubleBracket = /\{(.*?\}*)\}/g;
 const regexGetFirstTextBetweenBracket = /\{(.*?\}*)\}/;
 
