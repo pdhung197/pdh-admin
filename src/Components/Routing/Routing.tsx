@@ -51,7 +51,7 @@ export const Routing = () => {
         from={`${defaultPath}/`}
         to={`${defaultPath}${privateRoutes[0].path}` || `${defaultPath}/`}
       />
-      <Route path={`${defaultPath}*`} component={NotFound} />
+      <Route path={`${defaultPath}/*`} component={NotFound} />
     </Switch>
   );
 };
