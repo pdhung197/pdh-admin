@@ -15,46 +15,47 @@ import { WizardPage } from '../pages/AuthViews/FormPage/WizardPage';
 import { BasicTables } from '../pages/AuthViews/TablePage/BasicTables';
 import { DataTables } from '../pages/AuthViews/TablePage/DataTables';
 import { EditableTables } from '../pages/AuthViews/TablePage/EditableTables';
+import { defaultPath } from '../helpers/common';
 
 export const authRoutes: RouteTyping[] = [
   {
-    path: '/signin',
+    path: defaultPath + '/signin',
     accessLevel: 'public',
     component: SignIn,
     routeKey: 'common.route.signIn',
     routeLabel: 'Sign in',
   },
   {
-    path: '/signup',
+    path: defaultPath + '/signup',
     accessLevel: 'public',
     component: SignUp,
     routeKey: 'common.route.signUp',
     routeLabel: 'Sign up',
   },
   {
-    path: '/forgetpass',
+    path: defaultPath + '/forgetpass',
     accessLevel: 'public',
     component: ResetPass,
     routeKey: 'common.route.forgetPass',
     routeLabel: 'Forget Pass',
   },
   {
-    path: '/changepass',
+    path: defaultPath + '/changepass',
     accessLevel: 'admin',
     component: ChangePass,
     routeKey: 'common.route.changePass',
     routeLabel: 'Change pass',
   },
   {
-    path: '/auth/callback',
+    path: defaultPath + '/auth/callback',
     accessLevel: 'public',
-    redirect: '/dashboard',
+    redirect: defaultPath + '/dashboard',
   },
 ];
 
 export const adminRoutes: RouteTyping[] = [
   {
-    path: '/user/changepass',
+    path: defaultPath + '/user/changepass',
     accessLevel: 'admin',
     component: ChangePass,
     routeKey: 'common.route.changePass',
@@ -64,7 +65,7 @@ export const adminRoutes: RouteTyping[] = [
 
 export const pageRoutes: RouteTyping[] = [
   {
-    path: '/admin/dashboard',
+    path: defaultPath + '/admin/dashboard',
     accessLevel: 'viewer',
     component: Dashboard,
     exact: true,
@@ -78,17 +79,17 @@ export const appRoutes: RouteTyping[] = [
     routeKey: 'common.route.contactPage',
     child: [
       {
-        path: '/admin/user-grid',
+        path: defaultPath + '/admin/user-grid',
         component: UserGrid,
         routeKey: 'common.route.userGrid',
       },
       {
-        path: '/admin/user-list',
+        path: defaultPath + '/admin/user-list',
         component: UserList,
         routeKey: 'common.route.userList',
       },
       {
-        path: '/admin/profile',
+        path: defaultPath + '/admin/profile',
         component: UserProfile,
         routeKey: 'common.route.userProfile',
       },
@@ -98,12 +99,12 @@ export const appRoutes: RouteTyping[] = [
     routeKey: 'common.route.ecommercePage',
     child: [
       {
-        path: '/admin/products',
+        path: defaultPath + '/admin/products',
         component: Products,
         routeKey: 'common.route.products',
       },
       {
-        path: '/admin/product-detail',
+        path: defaultPath + '/admin/product-detail',
         component: ProductDetail,
         routeKey: 'common.route.productDetail',
       },
@@ -116,17 +117,17 @@ export const formRoutes: RouteTyping[] = [
     routeKey: 'common.route.forms',
     child: [
       {
-        path: '/admin/basic-form',
+        path: defaultPath + '/admin/basic-form',
         component: BasicThings,
         routeKey: 'common.route.basicForm',
       },
       {
-        path: '/admin/validation-form',
+        path: defaultPath + '/admin/validation-form',
         component: ValidationForms,
         routeKey: 'common.route.validationForm',
       },
       {
-        path: '/admin/wizard',
+        path: defaultPath + '/admin/wizard',
         component: WizardPage,
         routeKey: 'common.route.wizardPage',
       },
@@ -139,17 +140,17 @@ export const tableRoutes: RouteTyping[] = [
     routeKey: 'common.route.tablePage',
     child: [
       {
-        path: '/admin/basic-table',
+        path: defaultPath + '/admin/basic-table',
         component: BasicTables,
         routeKey: 'common.route.basicTable',
       },
       {
-        path: '/admin/data-table',
+        path: defaultPath + '/admin/data-table',
         component: DataTables,
         routeKey: 'common.route.dataTables',
       },
       {
-        path: '/admin/editable-table',
+        path: defaultPath + '/admin/editable-table',
         component: EditableTables,
         routeKey: 'common.route.editableTable',
       },

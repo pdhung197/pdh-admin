@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import dayjs from 'dayjs';
 import { FormatType } from '../useTranslation/models/Translation';
 
 export const defaultPath = process.env.PUBLIC_URL;
@@ -14,7 +14,7 @@ const resultFormatting = (result: any, option: string): any => {
 
     if (option === 'lowercase') return (result as string).toLowerCase();
 
-    if (Date.parse(result)) return format(new Date(result), option) || '';
+    if (Date.parse(result)) return dayjs(result, option); // format(new Date(result), option) || '';
 
     return result;
   } catch (error) {

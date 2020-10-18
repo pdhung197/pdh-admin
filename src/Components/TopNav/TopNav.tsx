@@ -25,7 +25,7 @@ export const TopNav = React.memo(({ accessLevel }: PrivateRouteType) => {
       return (
         <React.Fragment key={index + routeKey}>
           <div>
-            {path ? <Link to={defaultPath + path}>{t(routeKey)}</Link> : <span>{t(routeKey)}</span>}
+            {path ? <Link to={path}>{t(routeKey)}</Link> : <span>{t(routeKey)}</span>}
             {child ? ' >' : ''}
           </div>
           {child && generateNavLinks(child)}

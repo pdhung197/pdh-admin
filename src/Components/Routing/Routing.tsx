@@ -14,14 +14,14 @@ const createManualRoute = (route: RouteTyping, key: number) => {
   if ((!redirect && !RenderingComponent) || child) return null;
 
   const render = () => {
-    if (redirect) return <Redirect to={defaultPath + redirect} />;
+    if (redirect) return <Redirect to={redirect} />;
 
     if (!RenderingComponent) return <FallBack />;
 
     return <RenderingComponent />;
   };
 
-  return <Route key={key} path={defaultPath + path} exact={exact} render={render} />;
+  return <Route key={key} path={path} exact={exact} render={render} />;
 };
 
 const PrivateRouting = ({ accessLevel }: PrivateRouteType) => {
@@ -49,9 +49,9 @@ export const Routing = () => {
       <Redirect
         exact
         from={`${defaultPath}/`}
-        to={`${defaultPath}${privateRoutes[0].path}` || `${defaultPath}/`}
+        to={`${privateRoutes[0].path}` || `${defaultPath}/`}
       />
-      <Route path={`${defaultPath}/*`} component={NotFound} />
+      <Route path={`${defaultPath}*`} component={NotFound} />
     </Switch>
   );
 };
